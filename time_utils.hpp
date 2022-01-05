@@ -6,46 +6,27 @@
 
 namespace mtk {
 inline std::string sec2fmt(
-		std::uint64_t sec
+		std::uint64_t sec,
+		const bool trunc = false
 		) {
-	std::string str = "";
+	char buffer[64];
 
-	// second
-	{
-		std::stringstream ss;
-		const auto s = sec % 60;
-		ss << std::setw(2) << std::setfill('0') << s;
-		sec /= 60;
-		str = ss.str();
+	if ((!trunc) || (sec / (24 * 60 * 60))) {
+		std::sprintf(buffer, "%lud %02lu:%02lu:%02lu",
+				(sec / (24 * 60 * 60)),
+				(sec / (60 * 60)) % 24,
+				(sec / 60) % 60,
+				sec % 60
+				);
+	} else {
+		std::sprintf(buffer, "%02lu:%02lu:%02lu",
+				(sec / (60 * 60)) % 24,
+				(sec / 60) % 60,
+				sec % 60
+				);
 	}
 
-	// minute
-	{
-		std::stringstream ss;
-		const auto m = sec % 60;
-		ss << std::setw(2) << std::setfill('0') << m;
-		sec /= 60;
-		str = ss.str() + ":" + str;
-	}
-
-	// hour
-	{
-		std::stringstream ss;
-		const auto h = sec % 24;
-		ss << std::setw(2) << std::setfill('0') << h;
-		sec /= 24;
-		str = ss.str() + ":" + str;
-	}
-
-	// day
-	{
-		std::stringstream ss;
-		const auto d = sec;
-		ss << d;
-		str = ss.str() + "d " + str;
-	}
-
-	return str;
+	return std::string(buffer);
 }
 } // namespace mtk
 #endif
