@@ -28,5 +28,14 @@ inline std::string sec2fmt(
 
 	return std::string(buffer);
 }
+
+inline std::string timestamp2fmt(
+		std::time_t timestamp = std::time(nullptr)
+		) {
+	char buffer[64];
+	std::strftime(buffer, sizeof(buffer), "%A %c", std::localtime(&timestamp));
+
+	return std::string(buffer);
+}
 } // namespace mtk
 #endif
