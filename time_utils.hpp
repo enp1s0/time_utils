@@ -5,7 +5,7 @@
 #include <sstream>
 
 namespace mtk {
-inline std::string sec2fmt(
+inline std::string sec_fmt(
 		std::uint64_t sec,
 		const bool trunc = false
 		) {
@@ -29,7 +29,7 @@ inline std::string sec2fmt(
 	return std::string(buffer);
 }
 
-inline std::string timestamp2fmt(
+inline std::string timestamp_fmt(
 		std::time_t timestamp = std::time(nullptr)
 		) {
 	char buffer[64];

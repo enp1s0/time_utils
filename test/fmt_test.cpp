@@ -9,7 +9,7 @@ void test(
 	) {
 	char buffer[64];
 	const std::uint64_t sec = s + m * 60 + h * 60 * 60 + d * 60 * 60 * 24;
-	const auto test_str = mtk::sec2fmt(sec);
+	const auto test_str = mtk::sec_fmt(sec);
 
 	std::sprintf(buffer,
 							 "%ud %02u:%02u:%02u",
@@ -28,5 +28,5 @@ int main() {
 	test(0, 1, 1, 1);
 	test(1, 1, 1, 1);
 
-	std::printf("Current time : %s\n", mtk::timestamp2fmt().c_str());
+	std::printf("Current time : %s\n", mtk::timestamp_fmt().c_str());
 }
