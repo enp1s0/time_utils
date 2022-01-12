@@ -27,4 +27,6 @@ int main() {
 	test(0, 0, 1, 1);
 	test(0, 1, 1, 1);
 	test(1, 1, 1, 1);
+
+	std::printf("Current time : %s\n", mtk::timestamp2fmt().c_str());
 }
